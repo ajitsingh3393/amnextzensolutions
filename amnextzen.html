@@ -1,0 +1,846 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>AM NextZen Solutions - Get Your Dream Job</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --primary: #1a3c5e;
+    --accent: #e8a020;
+    --light: #f5f7fa;
+    --white: #ffffff;
+    --text: #333344;
+    --muted: #6b7280;
+    --border: #e2e8f0;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    font-family: 'DM Sans', sans-serif;
+    color: var(--text);
+    background: var(--white);
+    overflow-x: hidden;
+  }
+
+  /* TOP BAR */
+  .topbar {
+    background: var(--primary);
+    color: rgba(255,255,255,0.85);
+    font-size: 13px;
+    padding: 8px 0;
+  }
+  .topbar .container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 6px;
+  }
+  .topbar a { color: rgba(255,255,255,0.85); text-decoration: none; margin-right: 16px; }
+  .topbar a:hover { color: var(--accent); }
+
+  .container { max-width: 1200px; margin: 0 auto; padding: 0 24px; }
+
+  /* HEADER */
+  header {
+    background: var(--white);
+    box-shadow: 0 2px 12px rgba(0,0,0,0.08);
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+  }
+  .header-inner {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 16px 24px;
+    max-width: 1200px;
+    margin: 0 auto;
+  }
+  .logo {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    text-decoration: none;
+  }
+  .logo-icon {
+    width: 48px;
+    height: 48px;
+    background: var(--primary);
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: 'Playfair Display', serif;
+    font-size: 22px;
+    font-weight: 700;
+    color: var(--accent);
+  }
+  .logo-text {
+    display: flex;
+    flex-direction: column;
+    line-height: 1.1;
+  }
+  .logo-text .brand { font-family: 'Playfair Display', serif; font-size: 20px; font-weight: 700; color: var(--primary); }
+  .logo-text .tagline { font-size: 11px; color: var(--muted); letter-spacing: 0.5px; text-transform: uppercase; }
+
+  nav ul { list-style: none; display: flex; align-items: center; gap: 4px; }
+  nav ul li { position: relative; }
+  nav ul li a {
+    display: block;
+    padding: 8px 14px;
+    font-size: 14px;
+    font-weight: 500;
+    color: var(--text);
+    text-decoration: none;
+    border-radius: 6px;
+    transition: all 0.2s;
+  }
+  nav ul li a:hover, nav ul li a.active { background: var(--light); color: var(--primary); }
+  nav ul li .dropdown {
+    display: none;
+    position: absolute;
+    top: 100%;
+    left: 0;
+    background: var(--white);
+    border-radius: 10px;
+    box-shadow: 0 8px 32px rgba(0,0,0,0.12);
+    min-width: 240px;
+    padding: 8px;
+    z-index: 999;
+  }
+  nav ul li:hover .dropdown { display: block; }
+  nav ul li .dropdown a { font-size: 13px; color: var(--muted); border-radius: 6px; }
+  nav ul li .dropdown a:hover { color: var(--primary); background: var(--light); }
+
+  /* HERO */
+  .hero {
+    background: linear-gradient(135deg, var(--primary) 0%, #0d2540 60%, #1a3c5e 100%);
+    color: var(--white);
+    padding: 100px 0 80px;
+    position: relative;
+    overflow: hidden;
+  }
+  .hero::before {
+    content: '';
+    position: absolute;
+    top: -60px; right: -60px;
+    width: 400px; height: 400px;
+    background: radial-gradient(circle, rgba(232,160,32,0.15) 0%, transparent 70%);
+    border-radius: 50%;
+  }
+  .hero::after {
+    content: '';
+    position: absolute;
+    bottom: -80px; left: -80px;
+    width: 500px; height: 500px;
+    background: radial-gradient(circle, rgba(255,255,255,0.04) 0%, transparent 70%);
+    border-radius: 50%;
+  }
+  .hero .container { position: relative; z-index: 1; text-align: center; }
+  .hero-badge {
+    display: inline-block;
+    background: rgba(232,160,32,0.2);
+    border: 1px solid rgba(232,160,32,0.4);
+    color: var(--accent);
+    font-size: 12px;
+    font-weight: 600;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    padding: 6px 16px;
+    border-radius: 50px;
+    margin-bottom: 24px;
+  }
+  .hero h1 {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(32px, 5vw, 58px);
+    font-weight: 700;
+    line-height: 1.2;
+    margin-bottom: 20px;
+    max-width: 760px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+  .hero h1 span { color: var(--accent); }
+  .hero p {
+    font-size: 17px;
+    color: rgba(255,255,255,0.75);
+    max-width: 560px;
+    margin: 0 auto 36px;
+    line-height: 1.7;
+  }
+  .hero-btns { display: flex; gap: 16px; justify-content: center; flex-wrap: wrap; }
+  .btn-primary {
+    background: var(--accent);
+    color: var(--primary);
+    font-weight: 700;
+    padding: 14px 32px;
+    border-radius: 8px;
+    text-decoration: none;
+    font-size: 15px;
+    transition: all 0.2s;
+    display: inline-block;
+  }
+  .btn-primary:hover { transform: translateY(-2px); box-shadow: 0 8px 24px rgba(232,160,32,0.4); }
+  .btn-outline {
+    border: 2px solid rgba(255,255,255,0.4);
+    color: var(--white);
+    font-weight: 600;
+    padding: 13px 32px;
+    border-radius: 8px;
+    text-decoration: none;
+    font-size: 15px;
+    transition: all 0.2s;
+    display: inline-block;
+  }
+  .btn-outline:hover { background: rgba(255,255,255,0.1); border-color: rgba(255,255,255,0.7); }
+
+  /* STATS */
+  .stats {
+    background: var(--white);
+    padding: 60px 0;
+    border-bottom: 1px solid var(--border);
+  }
+  .stats-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 32px;
+    text-align: center;
+  }
+  .stat-item {}
+  .stat-num {
+    font-family: 'Playfair Display', serif;
+    font-size: 48px;
+    font-weight: 700;
+    color: var(--primary);
+    line-height: 1;
+    margin-bottom: 8px;
+  }
+  .stat-num span { color: var(--accent); }
+  .stat-label { font-size: 13px; color: var(--muted); font-weight: 500; text-transform: uppercase; letter-spacing: 1px; }
+
+  /* ABOUT */
+  .section { padding: 80px 0; }
+  .section-alt { background: var(--light); }
+
+  .section-header { text-align: center; margin-bottom: 56px; }
+  .section-header .eyebrow {
+    font-size: 12px;
+    font-weight: 700;
+    color: var(--accent);
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    margin-bottom: 12px;
+    display: block;
+  }
+  .section-header h2 {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(28px, 4vw, 42px);
+    font-weight: 700;
+    color: var(--primary);
+    line-height: 1.2;
+  }
+
+  .about-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 64px;
+    align-items: center;
+  }
+  .about-text p {
+    font-size: 16px;
+    color: var(--muted);
+    line-height: 1.8;
+    margin-bottom: 16px;
+  }
+  .about-text h2 {
+    font-family: 'Playfair Display', serif;
+    font-size: 36px;
+    font-weight: 700;
+    color: var(--primary);
+    margin-bottom: 20px;
+    line-height: 1.2;
+  }
+  .about-visual {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 16px;
+  }
+  .about-card {
+    background: var(--primary);
+    color: var(--white);
+    border-radius: 16px;
+    padding: 28px 24px;
+  }
+  .about-card:nth-child(2) { background: var(--accent); color: var(--primary); margin-top: 24px; }
+  .about-card h3 { font-family: 'Playfair Display', serif; font-size: 20px; font-weight: 700; margin-bottom: 10px; }
+  .about-card p { font-size: 13px; line-height: 1.7; opacity: 0.85; }
+
+  /* VISION / MISSION / VALUES */
+  .vmv-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 32px;
+  }
+  .vmv-card {
+    background: var(--white);
+    border-radius: 16px;
+    padding: 36px 28px;
+    border: 1px solid var(--border);
+    transition: all 0.3s;
+    position: relative;
+    overflow: hidden;
+  }
+  .vmv-card::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    height: 4px;
+    background: var(--primary);
+  }
+  .vmv-card:nth-child(2)::before { background: var(--accent); }
+  .vmv-card:hover { transform: translateY(-4px); box-shadow: 0 16px 40px rgba(0,0,0,0.08); }
+  .vmv-icon {
+    width: 52px; height: 52px;
+    background: var(--light);
+    border-radius: 12px;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 24px;
+    margin-bottom: 20px;
+  }
+  .vmv-card h3 {
+    font-family: 'Playfair Display', serif;
+    font-size: 22px;
+    font-weight: 700;
+    color: var(--primary);
+    margin-bottom: 14px;
+  }
+  .vmv-card p { font-size: 14px; color: var(--muted); line-height: 1.8; }
+
+  /* SERVICES */
+  .services-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 24px;
+  }
+  .service-card {
+    background: var(--primary);
+    color: var(--white);
+    border-radius: 16px;
+    padding: 36px 28px;
+    text-decoration: none;
+    display: block;
+    transition: all 0.3s;
+    position: relative;
+    overflow: hidden;
+  }
+  .service-card::after {
+    content: '→';
+    position: absolute;
+    bottom: 28px; right: 28px;
+    font-size: 20px;
+    color: var(--accent);
+    transition: transform 0.2s;
+  }
+  .service-card:hover { transform: translateY(-4px); box-shadow: 0 20px 48px rgba(26,60,94,0.35); }
+  .service-card:hover::after { transform: translateX(4px); }
+  .service-card:nth-child(even) { background: var(--accent); color: var(--primary); }
+  .service-card:nth-child(even)::after { color: var(--primary); }
+  .service-num { font-size: 11px; font-weight: 700; letter-spacing: 2px; opacity: 0.5; margin-bottom: 16px; }
+  .service-card h3 { font-family: 'Playfair Display', serif; font-size: 20px; font-weight: 700; margin-bottom: 12px; line-height: 1.3; }
+  .service-card p { font-size: 13px; opacity: 0.8; line-height: 1.7; }
+
+  /* INDUSTRIES */
+  .industries-list {
+    columns: 3;
+    column-gap: 24px;
+    list-style: none;
+  }
+  .industries-list li {
+    padding: 10px 0;
+    border-bottom: 1px solid var(--border);
+    break-inside: avoid;
+    margin-bottom: 0;
+  }
+  .industries-list li a {
+    text-decoration: none;
+    color: var(--text);
+    font-size: 14px;
+    font-weight: 500;
+    transition: color 0.2s;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+  .industries-list li a::before { content: '›'; color: var(--accent); font-size: 18px; }
+  .industries-list li a:hover { color: var(--primary); }
+
+  /* TESTIMONIALS */
+  .testimonials-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 24px;
+  }
+  .testimonial-card {
+    background: var(--white);
+    border: 1px solid var(--border);
+    border-radius: 16px;
+    padding: 32px;
+    position: relative;
+  }
+  .testimonial-card::before {
+    content: '"';
+    position: absolute;
+    top: 20px; right: 28px;
+    font-family: 'Playfair Display', serif;
+    font-size: 80px;
+    color: var(--accent);
+    opacity: 0.3;
+    line-height: 1;
+  }
+  .testimonial-card p { font-size: 14px; color: var(--muted); line-height: 1.8; margin-bottom: 20px; }
+  .testimonial-author { display: flex; align-items: center; gap: 12px; }
+  .author-avatar {
+    width: 44px; height: 44px;
+    border-radius: 50%;
+    background: var(--primary);
+    color: var(--white);
+    display: flex; align-items: center; justify-content: center;
+    font-weight: 700;
+    font-size: 16px;
+  }
+  .author-info strong { display: block; font-size: 14px; color: var(--primary); font-weight: 600; }
+  .author-info span { font-size: 12px; color: var(--muted); }
+
+  /* CTA */
+  .cta-section {
+    background: linear-gradient(135deg, var(--primary), #0d2540);
+    color: var(--white);
+    padding: 80px 0;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+  }
+  .cta-section::before {
+    content: '';
+    position: absolute;
+    top: -100px; right: -100px;
+    width: 400px; height: 400px;
+    background: radial-gradient(circle, rgba(232,160,32,0.1), transparent 70%);
+    border-radius: 50%;
+  }
+  .cta-section h2 {
+    font-family: 'Playfair Display', serif;
+    font-size: 42px;
+    font-weight: 700;
+    margin-bottom: 16px;
+    position: relative;
+  }
+  .cta-section p { font-size: 17px; opacity: 0.75; margin-bottom: 36px; position: relative; }
+
+  /* FOOTER */
+  footer {
+    background: #0a1e30;
+    color: rgba(255,255,255,0.7);
+    padding: 64px 0 32px;
+  }
+  .footer-grid {
+    display: grid;
+    grid-template-columns: 2fr 1fr 1fr 1.5fr;
+    gap: 48px;
+    margin-bottom: 48px;
+  }
+  .footer-brand .brand-name {
+    font-family: 'Playfair Display', serif;
+    font-size: 22px;
+    font-weight: 700;
+    color: var(--white);
+    margin-bottom: 14px;
+  }
+  .footer-brand p { font-size: 13px; line-height: 1.8; }
+  footer h4 { font-size: 13px; font-weight: 700; color: var(--white); text-transform: uppercase; letter-spacing: 2px; margin-bottom: 20px; }
+  footer ul { list-style: none; }
+  footer ul li { margin-bottom: 10px; }
+  footer ul li a { font-size: 13px; color: rgba(255,255,255,0.6); text-decoration: none; transition: color 0.2s; }
+  footer ul li a:hover { color: var(--accent); }
+  .footer-contact li { display: flex; gap: 10px; font-size: 13px; margin-bottom: 12px; align-items: flex-start; }
+  .footer-bottom {
+    border-top: 1px solid rgba(255,255,255,0.1);
+    padding-top: 28px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 13px;
+  }
+
+  @media (max-width: 900px) {
+    .stats-grid, .vmv-grid, .services-grid, .testimonials-grid { grid-template-columns: 1fr 1fr; }
+    .about-grid, .footer-grid { grid-template-columns: 1fr; }
+    .industries-list { columns: 2; }
+    nav { display: none; }
+  }
+  @media (max-width: 600px) {
+    .stats-grid, .vmv-grid, .services-grid, .testimonials-grid, .industries-list { grid-template-columns: 1fr; columns: 1; }
+  }
+
+  /* Animations */
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(30px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+  .hero .container > * { animation: fadeUp 0.7s ease forwards; }
+  .hero .container > *:nth-child(2) { animation-delay: 0.1s; }
+  .hero .container > *:nth-child(3) { animation-delay: 0.2s; }
+  .hero .container > *:nth-child(4) { animation-delay: 0.3s; }
+</style>
+</head>
+<body>
+
+<!-- TOP BAR -->
+<div class="topbar">
+  <div class="container">
+    <div>
+      <a href="mailto:info@amnextzen.com">info@amnextzen.com</a>
+      <a href="mailto:hr@amnextzen.com">hr@amnextzen.com</a>
+    </div>
+    <div>
+      <a href="tel:+919811357696">+91 98113 57696</a>
+    </div>
+  </div>
+</div>
+
+<!-- HEADER -->
+<header>
+  <div class="header-inner">
+    <a href="#" class="logo">
+      <div class="logo-icon">AM</div>
+      <div class="logo-text">
+        <span class="brand">AM NextZen Solutions</span>
+        <span class="tagline">Executive Search & HR Advisory</span>
+      </div>
+    </a>
+    <nav>
+      <ul>
+        <li><a href="#" class="active">Home</a></li>
+        <li>
+          <a href="#">About Us ▾</a>
+          <div class="dropdown">
+            <a href="#">Company Profile</a>
+            <a href="#">Mission &amp; Vision</a>
+            <a href="#">Why Us?</a>
+          </div>
+        </li>
+        <li>
+          <a href="#">Services ▾</a>
+          <div class="dropdown">
+            <a href="#">Executive Search</a>
+            <a href="#">Senior &amp; Middle Level Hiring</a>
+            <a href="#">Recruitment Process Outsourcing</a>
+            <a href="#">HR Advisory</a>
+            <a href="#">Courses</a>
+            <a href="#">Industry Practices</a>
+          </div>
+        </li>
+        <li><a href="#">Global Sourcing</a></li>
+        <li>
+          <a href="#">Industries ▾</a>
+          <div class="dropdown">
+            <a href="#">Aerospace &amp; Defence</a>
+            <a href="#">Automobile &amp; Auto Components</a>
+            <a href="#">Healthcare</a>
+            <a href="#">Information Technology</a>
+            <a href="#">Financial Services</a>
+            <a href="#">FMCG</a>
+            <a href="#">View All</a>
+          </div>
+        </li>
+        <li><a href="#">Current Openings</a></li>
+      </ul>
+    </nav>
+  </div>
+</header>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="container">
+    <div class="hero-badge">Trusted Talent Partner Since 2008</div>
+    <h1>Get Your <span>Dream Job</span> by an Excellent Hiring Team</h1>
+    <p>With dominant presence across various industries, we get mandates from leading business houses across the globe on a continuous basis.</p>
+    <div class="hero-btns">
+      <a href="#" class="btn-primary">Search Jobs</a>
+      <a href="#" class="btn-outline">Our Services</a>
+    </div>
+  </div>
+</section>
+
+<!-- STATS -->
+<section class="stats">
+  <div class="container">
+    <div class="stats-grid">
+      <div class="stat-item">
+        <div class="stat-num">15<span>+</span></div>
+        <div class="stat-label">Years of Market Leadership</div>
+      </div>
+      <div class="stat-item">
+        <div class="stat-num">50<span>K</span></div>
+        <div class="stat-label">Careers Made Till Date</div>
+      </div>
+      <div class="stat-item">
+        <div class="stat-num">120<span>+</span></div>
+        <div class="stat-label">Expert Consultants</div>
+      </div>
+      <div class="stat-item">
+        <div class="stat-num">24<span>+</span></div>
+        <div class="stat-label">Industries Covered</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ABOUT -->
+<section class="section">
+  <div class="container">
+    <div class="about-grid">
+      <div class="about-text">
+        <span class="eyebrow" style="font-size:12px;font-weight:700;color:var(--accent);letter-spacing:3px;text-transform:uppercase;display:block;margin-bottom:12px;">About AM NextZen Solutions</span>
+        <h2>Pioneer of Organized Recruitment Services in India</h2>
+        <p>Founded in 2008, AM NextZen Solutions is the pioneer of organized recruitment services in India. Over the past decades, we have acted as preferred talent acquisition partners to multinationals and leading Indian businesses to emerge as the leading talent solutions provider in India.</p>
+        <p>This combined with our role as trusted consultants for Indian professionals translates into our core capability — <strong>Building Careers. Building Organisations.</strong></p>
+        <a href="#" class="btn-primary" style="margin-top:8px;">Read More</a>
+      </div>
+      <div class="about-visual">
+        <div class="about-card">
+          <h3>Our Vision</h3>
+          <p>To become the largest and most effective solution provider while creating future leaders using world-class technologies and dynamic workforce.</p>
+        </div>
+        <div class="about-card">
+          <h3>Our Mission</h3>
+          <p>To maintain consistent business growth with an innovative, transparent and sustainable ecosystem.</p>
+        </div>
+        <div class="about-card" style="background:#e8f0f8;color:var(--primary);grid-column:span 2;">
+          <h3>Our Values</h3>
+          <p>We believe in investing in the best of talents and nurturing them to create a disciplined, committed work environment so that we can serve our business partners and team with respect and honesty.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- VISION MISSION VALUES -->
+<section class="section section-alt">
+  <div class="container">
+    <div class="section-header">
+      <span class="eyebrow">What Drives Us</span>
+      <h2>Our Core Principles</h2>
+    </div>
+    <div class="vmv-grid">
+      <div class="vmv-card">
+        <div class="vmv-icon">🎯</div>
+        <h3>Our Vision</h3>
+        <p>"Our vision is to become the largest and most effective solution provider while creating future leaders using world-class technologies and dynamic workforce."</p>
+      </div>
+      <div class="vmv-card">
+        <div class="vmv-icon">🚀</div>
+        <h3>Our Mission</h3>
+        <p>"Our mission is to maintain consistent business growth with an innovative, transparent and sustainable ecosystem."</p>
+      </div>
+      <div class="vmv-card">
+        <div class="vmv-icon">💎</div>
+        <h3>Our Values</h3>
+        <p>We invest in the best of talents and nurture them to create a disciplined, committed work environment — serving partners and teams with respect and honesty.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SERVICES -->
+<section class="section">
+  <div class="container">
+    <div class="section-header">
+      <span class="eyebrow">What We Offer</span>
+      <h2>Our Services</h2>
+    </div>
+    <div class="services-grid">
+      <a href="#" class="service-card">
+        <div class="service-num">01</div>
+        <h3>Executive Search</h3>
+        <p>Strategic leadership hiring for C-suite and board-level roles across industries.</p>
+      </a>
+      <a href="#" class="service-card">
+        <div class="service-num">02</div>
+        <h3>Senior &amp; Middle Level Hiring</h3>
+        <p>End-to-end recruitment for middle and senior management positions.</p>
+      </a>
+      <a href="#" class="service-card">
+        <div class="service-num">03</div>
+        <h3>Recruitment Process Outsourcing</h3>
+        <p>Complete outsourced recruitment solutions tailored to your business needs.</p>
+      </a>
+      <a href="#" class="service-card">
+        <div class="service-num">04</div>
+        <h3>Global Sourcing</h3>
+        <p>Access top talent globally with our international recruitment network.</p>
+      </a>
+      <a href="#" class="service-card">
+        <div class="service-num">05</div>
+        <h3>HR Advisory</h3>
+        <p>Expert HR consulting services — policies, compliance, and organizational design.</p>
+      </a>
+      <a href="#" class="service-card">
+        <div class="service-num">06</div>
+        <h3>Courses &amp; Industry Practices</h3>
+        <p>Skill-building courses and industry best practices for career growth.</p>
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- INDUSTRIES -->
+<section class="section section-alt">
+  <div class="container">
+    <div class="section-header">
+      <span class="eyebrow">Our Expertise</span>
+      <h2>Industries We Serve</h2>
+    </div>
+    <ul class="industries-list">
+      <li><a href="#">Aerospace &amp; Defence</a></li>
+      <li><a href="#">Automobile &amp; Auto Components</a></li>
+      <li><a href="#">Consumer Durables &amp; Building Materials</a></li>
+      <li><a href="#">Development</a></li>
+      <li><a href="#">Education</a></li>
+      <li><a href="#">Electrical &amp; Electronics</a></li>
+      <li><a href="#">Financial Services</a></li>
+      <li><a href="#">FMCG</a></li>
+      <li><a href="#">Healthcare</a></li>
+      <li><a href="#">Industrial</a></li>
+      <li><a href="#">Infrastructure</a></li>
+      <li><a href="#">Internet</a></li>
+      <li><a href="#">Logistics</a></li>
+      <li><a href="#">Media &amp; Entertainment</a></li>
+      <li><a href="#">Metals, Minerals &amp; Mining</a></li>
+      <li><a href="#">Oil &amp; Gas</a></li>
+      <li><a href="#">Outsourcing &amp; Offshoring</a></li>
+      <li><a href="#">Pharma, Lifesciences &amp; Diagnostics</a></li>
+      <li><a href="#">Power</a></li>
+      <li><a href="#">Real Estate</a></li>
+      <li><a href="#">Retail</a></li>
+      <li><a href="#">Information Technology</a></li>
+      <li><a href="#">Telecom</a></li>
+      <li><a href="#">Services</a></li>
+    </ul>
+  </div>
+</section>
+
+<!-- TESTIMONIALS -->
+<section class="section">
+  <div class="container">
+    <div class="section-header">
+      <span class="eyebrow">Client Testimonials</span>
+      <h2>What Our Clients Say</h2>
+    </div>
+    <div class="testimonials-grid">
+      <div class="testimonial-card">
+        <p>I had the pleasure of working exclusively with AM NextZen Solutions for the past 4 years. I consider AM NextZen having unprecedented integrity within this industry in terms of reference checking and honest feedback about candidates.</p>
+        <div class="testimonial-author">
+          <div class="author-avatar">R</div>
+          <div class="author-info">
+            <strong>Rashi</strong>
+            <span>Delhi</span>
+          </div>
+        </div>
+      </div>
+      <div class="testimonial-card">
+        <p>AM NextZen Solutions Consulting Team brings you international best practices with strong business and pragmatic local knowledge, that help any organization to introduce innovative approaches to Human Resources Programs.</p>
+        <div class="testimonial-author">
+          <div class="author-avatar">M</div>
+          <div class="author-info">
+            <strong>Manish</strong>
+            <span>Delhi</span>
+          </div>
+        </div>
+      </div>
+      <div class="testimonial-card">
+        <p>Their name says it all! The staff at AM NextZen Solutions is extremely knowledgeable and experienced in all aspects of Human Resource management and compliance. We are comfortable knowing they truly are a partner.</p>
+        <div class="testimonial-author">
+          <div class="author-avatar">M</div>
+          <div class="author-info">
+            <strong>Mohit</strong>
+            <span>Delhi</span>
+          </div>
+        </div>
+      </div>
+      <div class="testimonial-card">
+        <p>AM NextZen Solutions has proven to be a wonderful business partner. Our company benefits tremendously from their professional expertise, and we especially appreciate that the team targets their advice to our unique needs and culture.</p>
+        <div class="testimonial-author">
+          <div class="author-avatar">M</div>
+          <div class="author-info">
+            <strong>Manpreet</strong>
+            <span>Delhi</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CTA -->
+<section class="cta-section">
+  <div class="container" style="position:relative;z-index:1;">
+    <h2>AM NextZen Solutions Team Helps You Find Your Dream Job!</h2>
+    <p>Thousands of opportunities across 24+ industries — your next career move starts here.</p>
+    <a href="#" class="btn-primary" style="font-size:16px;padding:16px 40px;">Find a Job</a>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="container">
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <div class="brand-name">AM NextZen Solutions</div>
+        <p>Pioneer of organized recruitment services in India. Building Careers. Building Organisations. Since 2008.</p>
+      </div>
+      <div>
+        <h4>Quick Links</h4>
+        <ul>
+          <li><a href="#">Home</a></li>
+          <li><a href="#">About Us</a></li>
+          <li><a href="#">Services</a></li>
+          <li><a href="#">Industries</a></li>
+          <li><a href="#">Current Openings</a></li>
+          <li><a href="#">Contact Us</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4>Services</h4>
+        <ul>
+          <li><a href="#">Executive Search</a></li>
+          <li><a href="#">Senior &amp; Middle Level Hiring</a></li>
+          <li><a href="#">RPO</a></li>
+          <li><a href="#">Global Sourcing</a></li>
+          <li><a href="#">HR Advisory</a></li>
+          <li><a href="#">Courses</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4>Contact Us</h4>
+        <ul class="footer-contact">
+          <li>📧 info@amnextzen.com</li>
+          <li>📧 hr@amnextzen.com</li>
+          <li>📞 (+91) 98113 57696</li>
+          <li>📍 320, Aggarwal Tower, III-Floor, I.P Extension, LSC II, Patparganj, New Delhi – 110092</li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span>Terms &amp; Conditions. Copyrights © AM NextZen Solutions 2024</span>
+      <span>All Rights Reserved</span>
+    </div>
+  </div>
+</footer>
+
+</body>
+</html>
