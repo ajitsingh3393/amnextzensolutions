@@ -1,11 +1,1 @@
-.logo {
-    display: flex;
-    align-items: center;
-    text-decoration: none;
-}
 
-.logo-img {
-    height: 70px;      /* Zarurat ke hisab se adjust karein */
-    width: auto;
-    display: block;
-}
