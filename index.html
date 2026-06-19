@@ -784,16 +784,44 @@
 </section>
 
 <section class="section">
-<div class="container">
-<div class="section-header"><span class="eyebrow">Apply Now</span><h2>Resume Submission</h2></div>
-<form class="contact-form" action="https://formsubmit.co/amnextzensolutions@gmail.com" method="POST">
-<input type="text" name="name" placeholder="Full Name" required>
-<input type="email" name="email" placeholder="Email" required>
-<input type="tel" name="phone" placeholder="Phone">
-<textarea name="message" placeholder="Experience / Skills"></textarea>
-<button class="btn-primary" type="submit">Submit Application</button>
-</form>
-</div>
+    <div class="container">
+        <div class="section-header">
+            <span class="eyebrow">Apply Now</span>
+            <h2>Resume Submission</h2>
+        </div>
+
+        <form class="contact-form"
+              action="https://formsubmit.co/amnextzensolutions@gmail.com"
+              method="POST"
+              enctype="multipart/form-data">
+
+            <input type="text" name="name" placeholder="Full Name" required>
+
+            <input type="email" name="email" placeholder="Email Address" required>
+
+            <input type="tel" name="phone" placeholder="Phone Number" required>
+
+            <input type="text" name="position" placeholder="Position Applying For">
+
+            <textarea name="message"
+                      placeholder="Experience, Skills & Additional Information"></textarea>
+
+            <label for="resume"><strong>Upload Resume (PDF/DOC/DOCX)</strong></label>
+            <input type="file"
+                   id="resume"
+                   name="attachment"
+                   accept=".pdf,.doc,.docx"
+                   required>
+
+            <button class="btn-primary" type="submit">
+                Submit Application
+            </button>
+
+            <input type="hidden" name="_subject" value="New Job Application - AM NextZen Solutions">
+            <input type="hidden" name="_captcha" value="false">
+
+        </form>
+    </div>
 </section>
 
 <section class="section section-alt">
